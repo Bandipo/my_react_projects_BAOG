@@ -44,8 +44,27 @@ const ExpenseForm = () => {
     // });
   };
 
+  // when a form is submitted, the form should be reset to empty
+  // a button inside a form always emit an onSubmit event on the form element, so we can listen to it
+
+  const submitExpenseHandler = (event) => {
+    event.preventDefault();
+
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    };
+
+    console.log(expenseData);
+
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
+  };
+
   return (
-    <form>
+    <form onSubmit={submitExpenseHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
